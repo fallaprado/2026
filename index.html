@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<title>· Passaport Faller Falla Prado 2026 ·</title>
+
+<style>
+
+html{scroll-behavior:smooth;}
+
+body{
+font-family:Arial;
+margin:0;
+background:#f4f1e8;
+text-align:center;
+}
+
+.logo{
+width:130px;
+margin:30px auto;
+display:block;
+}
+
+nav{
+background:white;
+padding:15px;
+border-top:2px solid #ddd;
+border-bottom:2px solid #ddd;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+gap:40px;
+list-style:none;
+padding:0;
+margin:0;
+}
+
+nav a{
+text-decoration:none;
+font-weight:bold;
+color:darkred;
+font-size:18px;
+}
+
+.contador{
+margin:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+section{
+padding:60px 20px;
+}
+
+#FallaPradoenRoig{background:#ffd6d6;}
+#FallaPradoenBlau{background:#d6e6ff;}
+#FallaPradoenVerd{background:#d6ffd9;}
+#FallaPradoenMarro{background:#f0e0c9;}
+
+.llocs{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.lloc{
+background:white;
+width:260px;
+border-radius:12px;
+padding:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+position:relative;
+}
+
+.lloc img{
+width:100%;
+border-radius:8px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+background:darkred;
+color:white;
+font-weight:bold;
+cursor:pointer;
+border-radius:6px;
+}
+
+.segell{
+position:absolute;
+top:15px;
+right:15px;
+width:90px;
+height:90px;
+border:5px solid red;
+border-radius:50%;
+color:red;
+font-weight:bold;
+display:none;
+align-items:center;
+justify-content:center;
+transform:rotate(-20deg);
+background:rgba(255,0,0,0.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<img class="logo" src="https://dav36id.github.io/passaport-reus/escut.png">
+
+<nav>
+<ul>
+<li><a href="#FallaPradoenRoig">#FallaPradoenRoig</a></li>
+<li><a href="#FallaPradoenBlau">#FallaPradoenBlau</a></li>
+<li><a href="#FallaPradoenVerd">#FallaPradoenVerd</a></li>
+<li><a href="#FallaPradoenMarro">#FallaPradoenMarro</a></li>
+</ul>
+</nav>
+
+<div class="contador">
+Segells aconseguits: <span id="contador">0</span> / 24
+</div>
+
+
+<!-- ROIG -->
+<section id="FallaPradoenRoig">
+<h2>#FallaPradoenRoig</h2>
+<div class="llocs">
+
+<div class="lloc"><div class="segell" id="segell_prado">VISITAT</div>
+<h3>Falla Prado</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/3-Falla-Prado-2025-1.jpg">
+<button onclick="comprovarUbicacio('prado','Falla Prado')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_passeig">VISITAT</div>
+<h3>Falla Passeig</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/5-Falla-Passeig-2025-1.jpg">
+<button onclick="comprovarUbicacio('passeig','Falla Passeig')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_dula">VISITAT</div>
+<h3>Falla La Dula</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/4-Falla-La-Dula-2025-1.jpg">
+<button onclick="comprovarUbicacio('dula','Falla La Dula')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_cambro">VISITAT</div>
+<h3>Falla Cambro</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/1-Falla-Cambro-2025-2.jpg">
+<button onclick="comprovarUbicacio('cambro','Falla Cambro')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_via">VISITAT</div>
+<h3>Falla La Via</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/6-Falla-La-Via-2025-1.jpg">
+<button onclick="comprovarUbicacio('via','Falla La Via')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_portal">VISITAT</div>
+<h3>Falla Portal de Valldigna</h3>
+<img src="https://www.cendradigital.com/wp-content/uploads/2-Falla-Portal-2025-1.jpg">
+<button onclick="comprovarUbicacio('portal','Falla Portal de Valldigna')">Segellar</button></div>
+
+</div>
+</section>
+
+
+<!-- BLAU -->
+<section id="FallaPradoenBlau">
+<h2>#FallaPradoenBlau</h2>
+<div class="llocs">
+
+<div class="lloc"><div class="segell" id="segell_platja">VISITAT</div>
+<h3>Platja de Tavernes</h3>
+<img src="https://multimedia.comunitatvalenciana.com/1A51B2BDE34147488216F7416F9E5004/img/0DFD9C8FE67142168BFE32829890F5F5/Vista_Tavernes_valldigna.jpg">
+<button onclick="comprovarUbicacio('platja','Platja Tavernes')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_ullal">VISITAT</div>
+<h3>Ullal Gran</h3>
+<img src="https://caminosnaturales.es/dam/caminos-naturales/caminos-naturales/Sector_III_Este/antic_trenet/imagenes/dsc_0729_648603.JPG">
+<button onclick="comprovarUbicacio('ullal','Ullal Gran')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_riuvaca">VISITAT</div>
+<h3>Riu Vaca</h3>
+<img src="https://saforguia.com/upload/images/01_2021/2511_riu_vaca.jpg">
+<button onclick="comprovarUbicacio('riuvaca','Riu Vaca')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_clot">VISITAT</div>
+<h3>Clot de la Font</h3>
+<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06573-scaled.jpg">
+<button onclick="comprovarUbicacio('clot','Clot de la Font')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_goleta">VISITAT</div>
+<h3>Llac de la Goleta</h3>
+<img src="https://photo620x400.mnstatic.com/f0a3d10b39b680f24383e84e58ff2dce/la-goleta.jpg">
+<button onclick="comprovarUbicacio('goleta','Llac Goleta')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_cantus">VISITAT</div>
+<h3>Fontetes de Cantus</h3>
+<img src="https://s0.wklcdn.com/image_236/7101090/148937380/93835506Master.jpg">
+<button onclick="comprovarUbicacio('cantus','Fontetes Cantus')">Segellar</button></div>
+
+</div>
+</section>
+
+
+<!-- VERD -->
+<section id="FallaPradoenVerd">
+<h2>#FallaPradoenVerd</h2>
+<div class="llocs">
+
+<div class="lloc"><div class="segell" id="segell_creus">VISITAT</div>
+<h3>Alt de les Creus</h3>
+<img src="https://rutasparatodos.com/wp-content/uploads/2019/09/P1130291-1360x765.jpg">
+<button onclick="comprovarUbicacio('creus','Alt de les Creus')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_esther">VISITAT</div>
+<h3>Sendeta d'Esther</h3>
+<img src="https://estaticos-cdn.prensaiberica.es/clip/fc02a7b7-9193-4a58-ab36-f4c512e70741_alta-libre-aspect-ratio_default_0.webp">
+<button onclick="comprovarUbicacio('esther','Sendeta Esther')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_mirador">VISITAT</div>
+<h3>Mirador de la Valldigna</h3>
+<img src="https://femecv.blob.core.windows.net/publico/fotos/9414a8c3caFOTO01PRCV391.jpg">
+<button onclick="comprovarUbicacio('mirador','Mirador Valldigna')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_cadireta">VISITAT</div>
+<h3>La Cadireta</h3>
+<img src="https://dav36id.github.io/passaport-reus/cadireta.jpg">
+<button onclick="comprovarUbicacio('cadireta','Cadireta')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_dunar">VISITAT</div>
+<h3>Ecosistema Dunar</h3>
+<img src="https://ecosistemalitoral.dival.es/wp-content/uploads/playarapdells_imagen_olivaturisme.jpg">
+<button onclick="comprovarUbicacio('dunar','Ecosistema Dunar')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_viaverda">VISITAT</div>
+<h3>Via Verda</h3>
+<img src="https://s3.ppllstatics.com/lasprovincias/www/multimedia/202002/05/media/cortadas/146946459--1248x574.jpg">
+<button onclick="comprovarUbicacio('viaverda','Via Verda')">Segellar</button></div>
+
+</div>
+</section>
+
+
+<!-- MARRO -->
+<section id="FallaPradoenMarro">
+<h2>#FallaPradoenMarro</h2>
+<div class="llocs">
+
+<div class="lloc"><div class="segell" id="segell_esglesia">VISITAT</div>
+<h3>Església Sant Pere</h3>
+<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/Panorama-St-Pere-100x150-2.jpg">
+<button onclick="comprovarUbicacio('esglesia','Església Sant Pere')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_ajuntament">VISITAT</div>
+<h3>Ajuntament</h3>
+<img src="https://www.tavernes.es/sites/www.tavernes.es/files/ficheros/Edificis/04-11-2010_ajuntament-web.jpg">
+<button onclick="comprovarUbicacio('ajuntament','Ajuntament')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_torre">VISITAT</div>
+<h3>Torre Guaita</h3>
+<img src="https://www.tavernes.es/sites/www.tavernes.es/files/imagenes/turisme/vista-frontal-torre.jpg">
+<button onclick="comprovarUbicacio('torre','Torre Guaita')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_mercat">VISITAT</div>
+<h3>Mercat Municipal</h3>
+<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC07877-scaled.jpg">
+<button onclick="comprovarUbicacio('mercat','Mercat Municipal')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_ermita">VISITAT</div>
+<h3>Ermita Sant Llorenç</h3>
+<img src="https://multimedia.comunitatvalenciana.com/7AAE7E0925C545DC8CD6D96F4F353142/img/DBF54F3946204601B5121B1D29916EE0/st_lloren.jpg">
+<button onclick="comprovarUbicacio('ermita','Ermita Sant Llorenç')">Segellar</button></div>
+
+<div class="lloc"><div class="segell" id="segell_calvari">VISITAT</div>
+<h3>El Calvari</h3>
+<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06126-1-scaled.jpg">
+<button onclick="comprovarUbicacio('calvari','Calvari')">Segellar</button></div>
+
+</div>
+</section>
+
+
+<script>
+
+const llocs={
+
+prado:{lat:39.0723,lon:-0.2675},
+passeig:{lat:39.0720,lon:-0.2668},
+dula:{lat:39.0709,lon:-0.2659},
+cambro:{lat:39.0726,lon:-0.2660},
+via:{lat:39.0716,lon:-0.2667},
+portal:{lat:39.0710,lon:-0.2652},
+
+platja:{lat:39.08836,lon:-0.21476},
+ullal:{lat:39.08133,lon:-0.24136},
+riuvaca:{lat:39.06692,lon:-0.27069},
+clot:{lat:39.05689,lon:-0.27455},
+goleta:{lat:39.10264,lon:-0.22233},
+cantus:{lat:39.10264,lon:-0.22233},
+
+creus:{lat:39.07945,lon:-0.27773},
+esther:{lat:39.07945,lon:-0.27773},
+mirador:{lat:39.08398,lon:-0.24858},
+cadireta:{lat:39.05726,lon:-0.25763},
+dunar:{lat:39.07711,lon:-0.20979},
+viaverda:{lat:39.06961,lon:-0.28339},
+
+calvari:{lat:39.07498,lon:-0.26909}
+
+};
+
+function comprovarUbicacio(clau,nom){
+
+navigator.geolocation.getCurrentPosition(function(pos){
+
+const latU=pos.coords.latitude;
+const lonU=pos.coords.longitude;
+
+const latL=llocs[clau].lat;
+const lonL=llocs[clau].lon;
+
+const dist=calcularDistancia(latU,lonU,latL,lonL);
+
+if(dist<0.2){
+desbloquejarSegell(clau);
+alert("✅ Segell desbloquejat a "+nom);
+}else{
+alert("❌ Has d'estar a menys de 200 metres");
+}
+
+});
+
+}
+
+function desbloquejarSegell(clau){
+
+const segell=document.getElementById("segell_"+clau);
+
+if(segell.style.display!="flex"){
+segell.style.display="flex";
+localStorage.setItem("segell_"+clau,"true");
+actualitzarContador();
+}
+
+}
+
+function calcularDistancia(lat1,lon1,lat2,lon2){
+
+const R=6371;
+
+const dLat=(lat2-lat1)*Math.PI/180;
+const dLon=(lon2-lon1)*Math.PI/180;
+
+const a=
+Math.sin(dLat/2)*Math.sin(dLat/2)+
+Math.cos(lat1*Math.PI/180)*
+Math.cos(lat2*Math.PI/180)*
+Math.sin(dLon/2)*Math.sin(dLon/2);
+
+const c=2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+
+return R*c;
+
+}
+
+function actualitzarContador(){
+
+let total=0;
+
+for(let key in localStorage){
+if(key.startsWith("segell_")) total++;
+}
+
+document.getElementById("contador").innerText=total;
+
+}
+
+window.onload=function(){
+
+for(let key in localStorage){
+
+if(key.startsWith("segell_")){
+const id=key.replace("segell_","");
+const el=document.getElementById("segell_"+id);
+if(el) el.style.display="flex";
+}
+
+}
+
+actualitzarContador();
+
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
