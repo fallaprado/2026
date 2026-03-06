@@ -317,7 +317,7 @@ Segells aconseguits: <span id="contador">0</span> / 24
 <script>
 
 const llocs={
-prado:{lat:39.0723,lon:-0.2675},
+prado:{lat:39.0709,lon:-0.2619},
 passeig:{lat:39.0720,lon:-0.2668},
 dula:{lat:39.0709,lon:-0.2659},
 cambro:{lat:39.0726,lon:-0.2660},
@@ -367,7 +367,7 @@ const lonL=llocs[clau].lon;
 
 const dist=calcularDistancia(latU,lonU,latL,lonL);
 
-if(dist<2){
+if(dist<0.2){
 desbloquejarSegell(clau);
 alert("✅ Segell desbloquejat a "+nom);
 }else{
@@ -475,6 +475,7 @@ confeti.remove();
 
 </body>
 </html>
+
 
 
 
