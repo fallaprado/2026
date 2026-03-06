@@ -367,7 +367,7 @@ const lonL=llocs[clau].lon;
 
 const dist=calcularDistancia(latU,lonU,latL,lonL);
 
-if(dist<0.2){
+if(dist<2){
 desbloquejarSegell(clau);
 alert("✅ Segell desbloquejat a "+nom);
 }else{
@@ -475,5 +475,6 @@ confeti.remove();
 
 </body>
 </html>
+
 
 
