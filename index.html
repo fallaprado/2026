@@ -394,6 +394,7 @@ segell.classList.add("animar");
 }
 
 actualitzarContador();
+  llançarConfeti();
 
 }
 
@@ -435,9 +436,44 @@ if(segell) segell.style.display="flex";
 actualitzarContador();
 
 }
+function llançarConfeti(){
 
+for(let i=0;i<80;i++){
+
+const confeti=document.createElement("div");
+
+confeti.style.position="fixed";
+confeti.style.width="8px";
+confeti.style.height="8px";
+confeti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+confeti.style.left=Math.random()*100+"vw";
+confeti.style.top="-10px";
+confeti.style.opacity="1";
+confeti.style.transform=`rotate(${Math.random()*360}deg)`;
+
+document.body.appendChild(confeti);
+
+const duracio=2000+Math.random()*2000;
+const movimentX=(Math.random()-0.5)*200;
+
+confeti.animate([
+{transform:`translate(0,0) rotate(0deg)`},
+{transform:`translate(${movimentX}px,100vh) rotate(720deg)`}
+],{
+duration:duracio,
+easing:"ease-out"
+});
+
+setTimeout(()=>{
+confeti.remove();
+},duracio);
+
+}
+
+}
 </script>
 
 </body>
 </html>
+
 
