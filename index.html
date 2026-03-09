@@ -339,10 +339,10 @@ ullal:{lat:39.08118,lon:-0.241175}, // 39.0811879934703, -0.24117532725070776
 riuvaca:{lat:39.06692,lon:-0.26709}, // 39.06803780694209, -0.26709457015420607
 clot:{lat:39.05684,lon:-0.27459}, //39.056848397751615, -0.2745962054709853
 goleta:{lat:39.10282,lon:-0.22225}, // 39.102820263289054, -0.22225860631356073
-cantus:{lat:39.10264,lon:-0.22233}, // 
+cantus:{lat:41.1582,lon:1.10392}, // ARREEGLAR 
 
 creus:{lat:39.07945,lon:-0.27773}, // fetched
-esther:{lat:41.1582,lon:1.10392}, // Reus 41.158220962901325, 1.103928645343424
+esther:{lat:41.1582,lon:1.10392}, // Reus 41.158220962901325, 1.103928645343424 ARREGLAR
 mirador:{lat:39.08471,lon:-0.24889}, //39.08471834524592, -0.24889782537569152
 cadireta:{lat:39.05726,lon:-0.25763}, // fetched
 dunar:{lat:39.07711,lon:-0.20979}, // fetched
@@ -455,128 +455,78 @@ actualitzarContador();
 }
 function llançarConfeti(){
 
-// vibració
-if(navigator.vibrate){
-navigator.vibrate([200,100,200,100,400]);
-}
-
-// so traca
-const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3");
-audio.volume = 1;
-audio.play();
-
-// llançar molts coets
-for(let i=0;i<25;i++){
+for(let i=0;i<15;i++){
 
 setTimeout(()=>{
 
 const coet=document.createElement("div");
+
 coet.style.position="fixed";
-coet.style.bottom="-40px";
+coet.style.bottom="0px";
 coet.style.left=Math.random()*100+"vw";
-coet.style.width="6px";
-coet.style.height="30px";
-coet.style.background="orange";
-coet.style.borderRadius="3px";
-coet.style.boxShadow="0 0 15px yellow";
-coet.style.zIndex="9999";
+coet.style.width="4px";
+coet.style.height="20px";
+coet.style.background="white";
+coet.style.borderRadius="2px";
 
 document.body.appendChild(coet);
 
-const altura=window.innerHeight*(0.7+Math.random()*0.5);
+const altura=300+Math.random()*300;
 
-coet.animate(
-[
+coet.animate([
 {transform:"translateY(0)"},
 {transform:`translateY(-${altura}px)`}
-],
-{
+],{
 duration:800,
 easing:"ease-out"
-}
-);
+});
 
 setTimeout(()=>{
 
-explosio(
-coet.getBoundingClientRect().left,
-coet.getBoundingClientRect().top
-);
-
+explosio(coet.offsetLeft,window.innerHeight-altura);
 coet.remove();
 
 },800);
 
-},i*120);
+},i*300);
 
 }
 
 }
 
-// explosió gran
 function explosio(x,y){
 
-for(let i=0;i<60;i++){
+for(let i=0;i<40;i++){
 
 const espurna=document.createElement("div");
 
 espurna.style.position="fixed";
-espurna.style.width="8px";
-espurna.style.height="8px";
-espurna.style.borderRadius="50%";
-espurna.style.background=`hsl(${Math.random()*50+10},100%,50%)`;
 espurna.style.left=x+"px";
 espurna.style.top=y+"px";
-espurna.style.zIndex="9999";
+espurna.style.width="6px";
+espurna.style.height="6px";
+espurna.style.borderRadius="50%";
+espurna.style.background=`hsl(${Math.random()*360},100%,60%)`;
 
 document.body.appendChild(espurna);
 
-const angle=Math.random()*Math.PI*2;
-const dist=150+Math.random()*200;
+const angle=Math.random()*2*Math.PI;
+const distancia=100+Math.random()*100;
 
-espurna.animate(
-[
+const dx=Math.cos(angle)*distancia;
+const dy=Math.sin(angle)*distancia;
+
+espurna.animate([
 {transform:"translate(0,0)",opacity:1},
-{transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`,opacity:0}
-],
-{
-duration:900,
+{transform:`translate(${dx}px,${dy}px)`,opacity:0}
+],{
+duration:1000,
 easing:"ease-out"
-}
-);
+});
 
-setTimeout(()=>espurna.remove(),900);
-
-}
-
-// fum
-for(let i=0;i<6;i++){
-
-const fum=document.createElement("div");
-
-fum.style.position="fixed";
-fum.style.width="80px";
-fum.style.height="80px";
-fum.style.borderRadius="50%";
-fum.style.background="rgba(120,120,120,0.25)";
-fum.style.filter="blur(10px)";
-fum.style.left=x+(Math.random()*60-30)+"px";
-fum.style.top=y+(Math.random()*60-30)+"px";
-fum.style.zIndex="9998";
-
-document.body.appendChild(fum);
-
-fum.animate(
-[
-{transform:"scale(0.5)",opacity:0.5},
-{transform:"scale(2)",opacity:0}
-],
-{
-duration:2000
-}
-);
-
-setTimeout(()=>fum.remove(),2000);
+setTimeout(()=>{
+espurna.remove();
+},1000);
 
 }
 
@@ -585,6 +535,7 @@ setTimeout(()=>fum.remove(),2000);
 
 </body>
 </html>
+
 
 
 
