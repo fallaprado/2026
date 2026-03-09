@@ -342,7 +342,7 @@ goleta:{lat:39.10282,lon:-0.22225}, // 39.102820263289054, -0.22225860631356073
 cantus:{lat:39.10264,lon:-0.22233}, // 
 
 creus:{lat:39.07945,lon:-0.27773}, // fetched
-esther:{lat:39.07945,lon:-0.27773},
+esther:{lat:41.1583,lon:1.1035}, // PROVISIONAL 41.158391849558264, 1.103545461109887
 mirador:{lat:39.08471,lon:-0.24889}, //39.08471834524592, -0.24889782537569152
 cadireta:{lat:39.05726,lon:-0.25763}, // fetched
 dunar:{lat:39.07711,lon:-0.20979}, // fetched
@@ -404,8 +404,7 @@ segell.classList.add("animar");
 }
 
 actualitzarContador();
-  llançarConfeti();
-
+llançarCoets();
 }
 
 }
@@ -453,45 +452,96 @@ segell.style.transform="rotate(-20deg) scale(1)";
 actualitzarContador();
 
 }
-function llançarConfeti(){
 
-for(let i=0;i<80;i++){
 
-const confeti=document.createElement("div");
+function llançarCoets(){
 
-confeti.style.position="fixed";
-confeti.style.width="8px";
-confeti.style.height="8px";
-confeti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
-confeti.style.left=Math.random()*100+"vw";
-confeti.style.top="-10px";
-confeti.style.opacity="1";
-confeti.style.transform=`rotate(${Math.random()*360}deg)`;
+for(let i=0;i<5;i++){
 
-document.body.appendChild(confeti);
+setTimeout(()=>{
 
-const duracio=2000+Math.random()*2000;
-const movimentX=(Math.random()-0.5)*200;
+const coet=document.createElement("div");
 
-confeti.animate([
-{transform:`translate(0,0) rotate(0deg)`},
-{transform:`translate(${movimentX}px,100vh) rotate(720deg)`}
+coet.style.position="fixed";
+coet.style.bottom="0px";
+coet.style.left=Math.random()*100+"vw";
+coet.style.width="4px";
+coet.style.height="20px";
+coet.style.background="white";
+coet.style.borderRadius="2px";
+
+document.body.appendChild(coet);
+
+const altura=300+Math.random()*300;
+
+coet.animate([
+{transform:"translateY(0)"},
+{transform:`translateY(-${altura}px)`}
 ],{
-duration:duracio,
+duration:800,
 easing:"ease-out"
 });
 
 setTimeout(()=>{
-confeti.remove();
-},duracio);
+
+explosio(coet.offsetLeft,window.innerHeight-altura);
+coet.remove();
+
+},800);
+
+},i*300);
 
 }
+
+  function explosio(x,y){
+
+for(let i=0;i<40;i++){
+
+const espurna=document.createElement("div");
+
+espurna.style.position="fixed";
+espurna.style.left=x+"px";
+espurna.style.top=y+"px";
+espurna.style.width="6px";
+espurna.style.height="6px";
+espurna.style.borderRadius="50%";
+espurna.style.background=`hsl(${Math.random()*360},100%,60%)`;
+
+document.body.appendChild(espurna);
+
+const angle=Math.random()*2*Math.PI;
+const distancia=100+Math.random()*100;
+
+const dx=Math.cos(angle)*distancia;
+const dy=Math.sin(angle)*distancia;
+
+espurna.animate([
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${dx}px,${dy}px)`,opacity:0}
+],{
+duration:1000,
+easing:"ease-out"
+});
+
+setTimeout(()=>{
+espurna.remove();
+},1000);
+
+}
+
+}
+
+}
+
+
+  
 
 }
 </script>
 
 </body>
 </html>
+
 
 
 
