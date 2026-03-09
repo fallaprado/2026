@@ -429,8 +429,15 @@ window.onload=function(){
 const visitats=obtenirVisitats();
 
 visitats.forEach(function(clau){
+
 const segell=document.getElementById("segell_"+clau);
-if(segell) segell.style.display="flex";
+
+if(segell){
+segell.style.display="flex";
+segell.style.opacity="1";
+segell.style.transform="rotate(-20deg) scale(1)";
+}
+
 });
 
 actualitzarContador();
@@ -475,6 +482,7 @@ confeti.remove();
 
 </body>
 </html>
+
 
 
 
