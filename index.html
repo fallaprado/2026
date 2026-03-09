@@ -404,7 +404,8 @@ segell.classList.add("animar");
 }
 
 actualitzarContador();
-llançarCoets();
+  llançarConfeti();
+
 }
 
 }
@@ -451,91 +452,46 @@ segell.style.transform="rotate(-20deg) scale(1)";
 
 actualitzarContador();
 
-  function llançarCoets(){
+}
+function llançarConfeti(){
 
-for(let i=0;i<5;i++){
+for(let i=0;i<80;i++){
 
-setTimeout(()=>{
+const confeti=document.createElement("div");
 
-const coet=document.createElement("div");
+confeti.style.position="fixed";
+confeti.style.width="8px";
+confeti.style.height="8px";
+confeti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+confeti.style.left=Math.random()*100+"vw";
+confeti.style.top="-10px";
+confeti.style.opacity="1";
+confeti.style.transform=`rotate(${Math.random()*360}deg)`;
 
-coet.style.position="fixed";
-coet.style.bottom="0px";
-coet.style.left=Math.random()*100+"vw";
-coet.style.width="4px";
-coet.style.height="20px";
-coet.style.background="white";
-coet.style.borderRadius="2px";
+document.body.appendChild(confeti);
 
-document.body.appendChild(coet);
+const duracio=2000+Math.random()*2000;
+const movimentX=(Math.random()-0.5)*200;
 
-const altura=300+Math.random()*300;
-
-coet.animate([
-{transform:"translateY(0)"},
-{transform:`translateY(-${altura}px)`}
+confeti.animate([
+{transform:`translate(0,0) rotate(0deg)`},
+{transform:`translate(${movimentX}px,100vh) rotate(720deg)`}
 ],{
-duration:800,
+duration:duracio,
 easing:"ease-out"
 });
 
 setTimeout(()=>{
-
-explosio(coet.offsetLeft,window.innerHeight-altura);
-coet.remove();
-
-},800);
-
-},i*300);
+confeti.remove();
+},duracio);
 
 }
 
 }
-
-  function explosio(x,y){
-
-for(let i=0;i<40;i++){
-
-const espurna=document.createElement("div");
-
-espurna.style.position="fixed";
-espurna.style.left=x+"px";
-espurna.style.top=y+"px";
-espurna.style.width="6px";
-espurna.style.height="6px";
-espurna.style.borderRadius="50%";
-espurna.style.background=`hsl(${Math.random()*360},100%,60%)`;
-
-document.body.appendChild(espurna);
-
-const angle=Math.random()*2*Math.PI;
-const distancia=100+Math.random()*100;
-
-const dx=Math.cos(angle)*distancia;
-const dy=Math.sin(angle)*distancia;
-
-espurna.animate([
-{transform:"translate(0,0)",opacity:1},
-{transform:`translate(${dx}px,${dy}px)`,opacity:0}
-],{
-duration:1000,
-easing:"ease-out"
-});
-
-setTimeout(()=>{
-espurna.remove();
-},1000);
-
-}
-
-}
-
 </script>
 
 </body>
 </html>
-
-
 
 
 
