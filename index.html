@@ -3,19 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>· Passaport Faller Falla Prado 2026 ·</title>
-
-<!-- =========================================
-PASSAPORT FALLER
-Proudly powerd by FALLA PRADO 2026
-Sistema de segells amb geolocalització
-========================================= -->
-
-
-  
+//11111111111111111111111111111111111111111111111111111
 <style>
 
-
-  
 html{scroll-behavior:smooth;}
 
 body{
@@ -23,6 +13,7 @@ font-family:Arial;
 margin:0;
 background:#f4f1e8;
 text-align:center;
+overflow-x:hidden;
 }
 
 .logo{
@@ -126,27 +117,41 @@ animation:segellStamp 0.5s ease-out forwards;
 }
 
 @keyframes segellStamp{
-
-0%{
-transform:rotate(-20deg) scale(3);
-opacity:0;
+0%{transform:rotate(-20deg) scale(3);opacity:0;}
+50%{transform:rotate(-20deg) scale(0.8);opacity:1;}
+80%{transform:rotate(-20deg) scale(1.1);}
+100%{transform:rotate(-20deg) scale(1);opacity:1;}
 }
 
-50%{
-transform:rotate(-20deg) scale(0.8);
-opacity:1;
+.coet{
+position:fixed;
+bottom:-40px;
+width:6px;
+height:30px;
+background:orange;
+border-radius:3px;
+box-shadow:0 0 15px yellow;
+z-index:9999;
 }
 
-80%{
-transform:rotate(-20deg) scale(1.1);
+.espurna{
+position:fixed;
+width:8px;
+height:8px;
+border-radius:50%;
+z-index:9999;
 }
 
-100%{
-transform:rotate(-20deg) scale(1);
-opacity:1;
+.fum{
+position:fixed;
+width:80px;
+height:80px;
+border-radius:50%;
+background:rgba(120,120,120,0.25);
+filter:blur(10px);
+z-index:9998;
 }
 
-}
 </style>
 </head>
 
@@ -167,225 +172,95 @@ opacity:1;
 Segells aconseguits: <span id="contador">0</span> / 24
 </div>
 
-
 <!-- ROIG -->
 <section id="FallaPradoenRoig">
 <h2>#FallaPradoenRoig</h2>
 <div class="llocs">
 
-<div class="lloc"><div class="segell" id="segell_prado">VISITAT</div>
-<h3>Falla Prado</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/3-Falla-Prado-2025-1.jpg">
-<button onclick="comprovarUbicacio('prado','Falla Prado')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_prado">VISITAT</div><h3>Falla Prado</h3><img src="https://www.cendradigital.com/wp-content/uploads/3-Falla-Prado-2025-1.jpg"><button onclick="desbloquejarSegell('prado')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_passeig">VISITAT</div>
-<h3>Falla Passeig</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/5-Falla-Passeig-2025-1.jpg">
-<button onclick="comprovarUbicacio('passeig','Falla Passeig')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_passeig">VISITAT</div><h3>Falla Passeig</h3><img src="https://www.cendradigital.com/wp-content/uploads/5-Falla-Passeig-2025-1.jpg"><button onclick="desbloquejarSegell('passeig')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_dula">VISITAT</div>
-<h3>Falla La Dula</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/4-Falla-La-Dula-2025-1.jpg">
-<button onclick="comprovarUbicacio('dula','Falla La Dula')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_dula">VISITAT</div><h3>Falla La Dula</h3><img src="https://www.cendradigital.com/wp-content/uploads/4-Falla-La-Dula-2025-1.jpg"><button onclick="desbloquejarSegell('dula')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_cambro">VISITAT</div>
-<h3>Falla Cambro</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/1-Falla-Cambro-2025-2.jpg">
-<button onclick="comprovarUbicacio('cambro','Falla Cambro')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_cambro">VISITAT</div><h3>Falla Cambro</h3><img src="https://www.cendradigital.com/wp-content/uploads/1-Falla-Cambro-2025-2.jpg"><button onclick="desbloquejarSegell('cambro')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_via">VISITAT</div>
-<h3>Falla La Via</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/6-Falla-La-Via-2025-1.jpg">
-<button onclick="comprovarUbicacio('via','Falla La Via')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_via">VISITAT</div><h3>Falla La Via</h3><img src="https://www.cendradigital.com/wp-content/uploads/6-Falla-La-Via-2025-1.jpg"><button onclick="desbloquejarSegell('via')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_portal">VISITAT</div>
-<h3>Falla Portal de Valldigna</h3>
-<img src="https://www.cendradigital.com/wp-content/uploads/2-Falla-Portal-2025-1.jpg">
-<button onclick="comprovarUbicacio('portal','Falla Portal de Valldigna')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_portal">VISITAT</div><h3>Falla Portal de Valldigna</h3><img src="https://www.cendradigital.com/wp-content/uploads/2-Falla-Portal-2025-1.jpg"><button onclick="desbloquejarSegell('portal')">Segellar</button></div>
 
 </div>
 </section>
-
 
 <!-- BLAU -->
 <section id="FallaPradoenBlau">
 <h2>#FallaPradoenBlau</h2>
 <div class="llocs">
 
-<div class="lloc"><div class="segell" id="segell_platja">VISITAT</div>
-<h3>Platja de Tavernes</h3>
-<img src="https://multimedia.comunitatvalenciana.com/1A51B2BDE34147488216F7416F9E5004/img/0DFD9C8FE67142168BFE32829890F5F5/Vista_Tavernes_valldigna.jpg">
-<button onclick="comprovarUbicacio('platja','Platja Tavernes')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_platja">VISITAT</div><h3>Platja Tavernes</h3><img src="https://multimedia.comunitatvalenciana.com/1A51B2BDE34147488216F7416F9E5004/img/0DFD9C8FE67142168BFE32829890F5F5/Vista_Tavernes_valldigna.jpg"><button onclick="desbloquejarSegell('platja')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_ullal">VISITAT</div>
-<h3>Ullal Gran</h3>
-<img src="https://caminosnaturales.es/dam/caminos-naturales/caminos-naturales/Sector_III_Este/antic_trenet/imagenes/dsc_0729_648603.JPG">
-<button onclick="comprovarUbicacio('ullal','Ullal Gran')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_ullal">VISITAT</div><h3>Ullal Gran</h3><img src="https://caminosnaturales.es/dam/caminos-naturales/caminos-naturales/Sector_III_Este/antic_trenet/imagenes/dsc_0729_648603.JPG"><button onclick="desbloquejarSegell('ullal')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_riuvaca">VISITAT</div>
-<h3>Riu Vaca</h3>
-<img src="https://saforguia.com/upload/images/01_2021/2511_riu_vaca.jpg">
-<button onclick="comprovarUbicacio('riuvaca','Riu Vaca')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_riuvaca">VISITAT</div><h3>Riu Vaca</h3><img src="https://saforguia.com/upload/images/01_2021/2511_riu_vaca.jpg"><button onclick="desbloquejarSegell('riuvaca')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_clot">VISITAT</div>
-<h3>Clot de la Font</h3>
-<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06573-scaled.jpg">
-<button onclick="comprovarUbicacio('clot','Clot de la Font')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_clot">VISITAT</div><h3>Clot de la Font</h3><img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06573-scaled.jpg"><button onclick="desbloquejarSegell('clot')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_goleta">VISITAT</div>
-<h3>Llac de la Goleta</h3>
-<img src="https://photo620x400.mnstatic.com/f0a3d10b39b680f24383e84e58ff2dce/la-goleta.jpg">
-<button onclick="comprovarUbicacio('goleta','Llac Goleta')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_goleta">VISITAT</div><h3>Llac de la Goleta</h3><img src="https://photo620x400.mnstatic.com/f0a3d10b39b680f24383e84e58ff2dce/la-goleta.jpg"><button onclick="desbloquejarSegell('goleta')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_cantus">VISITAT</div>
-<h3>Fontetes de Cantus</h3>
-<img src="https://s0.wklcdn.com/image_236/7101090/148937380/93835506Master.jpg">
-<button onclick="comprovarUbicacio('cantus','Fontetes Cantus')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_cantus">VISITAT</div><h3>Fontetes de Cantus</h3><img src="https://s0.wklcdn.com/image_236/7101090/148937380/93835506Master.jpg"><button onclick="desbloquejarSegell('cantus')">Segellar</button></div>
 
 </div>
 </section>
-
 
 <!-- VERD -->
 <section id="FallaPradoenVerd">
 <h2>#FallaPradoenVerd</h2>
 <div class="llocs">
 
-<div class="lloc"><div class="segell" id="segell_creus">VISITAT</div>
-<h3>Alt de les Creus</h3>
-<img src="https://rutasparatodos.com/wp-content/uploads/2019/09/P1130291-1360x765.jpg">
-<button onclick="comprovarUbicacio('creus','Alt de les Creus')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_creus">VISITAT</div><h3>Alt de les Creus</h3><img src="https://rutasparatodos.com/wp-content/uploads/2019/09/P1130291-1360x765.jpg"><button onclick="desbloquejarSegell('creus')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_esther">VISITAT</div>
-<h3>Sendeta d'Esther</h3>
-<img src="https://estaticos-cdn.prensaiberica.es/clip/fc02a7b7-9193-4a58-ab36-f4c512e70741_alta-libre-aspect-ratio_default_0.webp">
-<button onclick="comprovarUbicacio('esther','Sendeta Esther')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_esther">VISITAT</div><h3>Sendeta Esther</h3><img src="https://estaticos-cdn.prensaiberica.es/clip/fc02a7b7-9193-4a58-ab36-f4c512e70741_alta-libre-aspect-ratio_default_0.webp"><button onclick="desbloquejarSegell('esther')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_mirador">VISITAT</div>
-<h3>Mirador de la Valldigna</h3>
-<img src="https://femecv.blob.core.windows.net/publico/fotos/9414a8c3caFOTO01PRCV391.jpg">
-<button onclick="comprovarUbicacio('mirador','Mirador Valldigna')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_mirador">VISITAT</div><h3>Mirador Valldigna</h3><img src="https://femecv.blob.core.windows.net/publico/fotos/9414a8c3caFOTO01PRCV391.jpg"><button onclick="desbloquejarSegell('mirador')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_cadireta">VISITAT</div>
-<h3>La Cadireta</h3>
-<img src="https://fallaprado.github.io/2026/cadireta.jpg">
-<button onclick="comprovarUbicacio('cadireta','Cadireta')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_cadireta">VISITAT</div><h3>Cadireta</h3><img src="https://fallaprado.github.io/2026/cadireta.jpg"><button onclick="desbloquejarSegell('cadireta')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_dunar">VISITAT</div>
-<h3>Ecosistema Dunar</h3>
-<img src="https://ecosistemalitoral.dival.es/wp-content/uploads/playarapdells_imagen_olivaturisme.jpg">
-<button onclick="comprovarUbicacio('dunar','Ecosistema Dunar')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_dunar">VISITAT</div><h3>Ecosistema Dunar</h3><img src="https://ecosistemalitoral.dival.es/wp-content/uploads/playarapdells_imagen_olivaturisme.jpg"><button onclick="desbloquejarSegell('dunar')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_viaverda">VISITAT</div>
-<h3>Via Verda</h3>
-<img src="https://s3.ppllstatics.com/lasprovincias/www/multimedia/202002/05/media/cortadas/146946459--1248x574.jpg">
-<button onclick="comprovarUbicacio('viaverda','Via Verda')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_viaverda">VISITAT</div><h3>Via Verda</h3><img src="https://s3.ppllstatics.com/lasprovincias/www/multimedia/202002/05/media/cortadas/146946459--1248x574.jpg"><button onclick="desbloquejarSegell('viaverda')">Segellar</button></div>
 
 </div>
 </section>
-
 
 <!-- MARRO -->
 <section id="FallaPradoenMarro">
 <h2>#FallaPradoenMarro</h2>
 <div class="llocs">
 
-<div class="lloc"><div class="segell" id="segell_esglesia">VISITAT</div>
-<h3>Església Sant Pere</h3>
-<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/Panorama-St-Pere-100x150-2.jpg">
-<button onclick="comprovarUbicacio('esglesia','Església Sant Pere')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_esglesia">VISITAT</div><h3>Església Sant Pere</h3><img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/Panorama-St-Pere-100x150-2.jpg"><button onclick="desbloquejarSegell('esglesia')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_ajuntament">VISITAT</div>
-<h3>Ajuntament</h3>
-<img src="https://www.tavernes.es/sites/www.tavernes.es/files/ficheros/Edificis/04-11-2010_ajuntament-web.jpg">
-<button onclick="comprovarUbicacio('ajuntament','Ajuntament')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_ajuntament">VISITAT</div><h3>Ajuntament</h3><img src="https://www.tavernes.es/sites/www.tavernes.es/files/ficheros/Edificis/04-11-2010_ajuntament-web.jpg"><button onclick="desbloquejarSegell('ajuntament')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_torre">VISITAT</div>
-<h3>Torre Guaita</h3>
-<img src="https://www.tavernes.es/sites/www.tavernes.es/files/imagenes/turisme/vista-frontal-torre.jpg">
-<button onclick="comprovarUbicacio('torre','Torre Guaita')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_torre">VISITAT</div><h3>Torre Guaita</h3><img src="https://www.tavernes.es/sites/www.tavernes.es/files/imagenes/turisme/vista-frontal-torre.jpg"><button onclick="desbloquejarSegell('torre')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_mercat">VISITAT</div>
-<h3>Mercat Municipal</h3>
-<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC07877-scaled.jpg">
-<button onclick="comprovarUbicacio('mercat','Mercat Municipal')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_mercat">VISITAT</div><h3>Mercat Municipal</h3><img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC07877-scaled.jpg"><button onclick="desbloquejarSegell('mercat')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_ermita">VISITAT</div>
-<h3>Ermita Sant Llorenç</h3>
-<img src="https://multimedia.comunitatvalenciana.com/7AAE7E0925C545DC8CD6D96F4F353142/img/DBF54F3946204601B5121B1D29916EE0/st_lloren.jpg">
-<button onclick="comprovarUbicacio('ermita','Ermita Sant Llorenç')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_ermita">VISITAT</div><h3>Ermita Sant Llorenç</h3><img src="https://multimedia.comunitatvalenciana.com/7AAE7E0925C545DC8CD6D96F4F353142/img/DBF54F3946204601B5121B1D29916EE0/st_lloren.jpg"><button onclick="desbloquejarSegell('ermita')">Segellar</button></div>
 
-<div class="lloc"><div class="segell" id="segell_calvari">VISITAT</div>
-<h3>El Calvari</h3>
-<img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06126-1-scaled.jpg">
-<button onclick="comprovarUbicacio('calvari','Calvari')">Segellar</button></div>
+<div class="lloc"><div class="segell" id="segell_calvari">VISITAT</div><h3>Calvari</h3><img src="https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06126-1-scaled.jpg"><button onclick="desbloquejarSegell('calvari')">Segellar</button></div>
 
 </div>
 </section>
 
-
 <script>
-
-const llocs={
-prado:{lat:39.0709,lon:-0.2619}, // fetched
-passeig:{lat:39.0698,lon:-0.2684}, // fetched
-dula:{lat:39.0758,lon:-0.2621}, // 39.07580395351106, -0.2621378459483198
-cambro:{lat:39.0700,lon:-0.2695}, // 39.0700505756426, -0.2695904649914781
-via:{lat:39.0694,lon:-0.2666}, //39.06948375299556, -0.2666912361557852
-portal:{lat:39.0733,lon:-0.2638}, // 39.07331883343787, -0.2638260208126625
-
-platja:{lat:39.0877,lon:-0.21579}, // 39.08772885025395, -0.21579338989357827
-ullal:{lat:39.08118,lon:-0.241175}, // 39.0811879934703, -0.24117532725070776
-riuvaca:{lat:39.06692,lon:-0.26709}, // 39.06803780694209, -0.26709457015420607
-clot:{lat:39.05684,lon:-0.27459}, //39.056848397751615, -0.2745962054709853
-goleta:{lat:39.10282,lon:-0.22225}, // 39.102820263289054, -0.22225860631356073
-cantus:{lat:39.10264,lon:-0.22233}, // 
-
-creus:{lat:39.07945,lon:-0.27773}, // fetched
-esther:{lat:39.07945,lon:-0.27773},
-mirador:{lat:39.08471,lon:-0.24889}, //39.08471834524592, -0.24889782537569152
-cadireta:{lat:39.05726,lon:-0.25763}, // fetched
-dunar:{lat:39.07711,lon:-0.20979}, // fetched
-viaverda:{lat:39.06961,lon:-0.28339}, // fetched
-
-esglesia:{lat:39.07256,lon:-0.2673}, //39.072561537215776, -0.2673623054699284
-ajuntament:{lat:39.07159,lon:-0.26767}, //39.07159845980584, -0.2676703901271828
-torre:{lat:39.08598,lon:-0.21781}, // 39.08598595574705, -0.2178164561388883
-mercat:{lat:39.071933,lon:-0.26550}, //39.07193339538524, -0.26550054409857154
-ermita:{lat:39.08223,lon:-0.25571}, //39.08223503801406, -0.25571972821192324
-calvari:{lat:39.07510,lon:-0.26909} //39.07510774923724, -0.2690946924699142
-};
 
 function obtenirVisitats(){
 const dades=localStorage.getItem("segellsVisitats");
-return dades ? JSON.parse(dades) : [];
+return dades?JSON.parse(dades):[];
 }
 
 function guardarVisitats(llista){
 localStorage.setItem("segellsVisitats",JSON.stringify(llista));
-}
-
-function comprovarUbicacio(clau,nom){
-
-navigator.geolocation.getCurrentPosition(function(pos){
-
-const latU=pos.coords.latitude;
-const lonU=pos.coords.longitude;
-
-const latL=llocs[clau].lat;
-const lonL=llocs[clau].lon;
-
-const dist=calcularDistancia(latU,lonU,latL,lonL);
-
-if(dist<0.2){
-desbloquejarSegell(clau);
-alert("✅ Segell desbloquejat a "+nom);
-}else{
-alert("❌ Has d'estar a menys de 200 metres");
-}
-
-});
-
 }
 
 function desbloquejarSegell(clau){
@@ -404,98 +279,103 @@ segell.classList.add("animar");
 }
 
 actualitzarContador();
-  llançarConfeti();
+mascletada();
 
 }
-
-}
-
-function calcularDistancia(lat1,lon1,lat2,lon2){
-
-const R=6371;
-
-const dLat=(lat2-lat1)*Math.PI/180;
-const dLon=(lon2-lon1)*Math.PI/180;
-
-const a=
-Math.sin(dLat/2)*Math.sin(dLat/2)+
-Math.cos(lat1*Math.PI/180)*
-Math.cos(lat2*Math.PI/180)*
-Math.sin(dLon/2)*Math.sin(dLon/2);
-
-const c=2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-
-return R*c;
 
 }
 
 function actualitzarContador(){
-const visitats=obtenirVisitats();
-document.getElementById("contador").innerText=visitats.length;
+document.getElementById("contador").innerText=obtenirVisitats().length;
 }
 
-window.onload=function(){
+function mascletada(){
 
-const visitats=obtenirVisitats();
+if(navigator.vibrate) navigator.vibrate([200,100,200,100,400]);
 
-visitats.forEach(function(clau){
+const audio=new Audio("https://assets.mixkit.co/active_storage/sfx/212/212-preview.mp3");
+audio.play();
 
-const segell=document.getElementById("segell_"+clau);
-
-if(segell){
-segell.style.display="flex";
-segell.style.opacity="1";
-segell.style.transform="rotate(-20deg) scale(1)";
+for(let i=0;i<25;i++){
+setTimeout(llançarCoet,i*120);
 }
 
-});
-
-actualitzarContador();
-
 }
-function llançarConfeti(){
 
-for(let i=0;i<80;i++){
+function llançarCoet(){
 
-const confeti=document.createElement("div");
+const coet=document.createElement("div");
+coet.className="coet";
+coet.style.left=Math.random()*100+"vw";
 
-confeti.style.position="fixed";
-confeti.style.width="8px";
-confeti.style.height="8px";
-confeti.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
-confeti.style.left=Math.random()*100+"vw";
-confeti.style.top="-10px";
-confeti.style.opacity="1";
-confeti.style.transform=`rotate(${Math.random()*360}deg)`;
+document.body.appendChild(coet);
 
-document.body.appendChild(confeti);
+const altura=window.innerHeight*(0.7+Math.random()*0.5);
 
-const duracio=2000+Math.random()*2000;
-const movimentX=(Math.random()-0.5)*200;
-
-confeti.animate([
-{transform:`translate(0,0) rotate(0deg)`},
-{transform:`translate(${movimentX}px,100vh) rotate(720deg)`}
-],{
-duration:duracio,
-easing:"ease-out"
-});
+coet.animate(
+[{transform:"translateY(0)"},{transform:`translateY(-${altura}px)`}],
+{duration:800,easing:"ease-out"}
+);
 
 setTimeout(()=>{
-confeti.remove();
-},duracio);
+explosio(
+coet.getBoundingClientRect().left,
+coet.getBoundingClientRect().top
+);
+coet.remove();
+},800);
+
+}
+
+function explosio(x,y){
+
+for(let i=0;i<60;i++){
+
+const espurna=document.createElement("div");
+espurna.className="espurna";
+
+espurna.style.background=`hsl(${Math.random()*50+10},100%,50%)`;
+espurna.style.left=x+"px";
+espurna.style.top=y+"px";
+
+document.body.appendChild(espurna);
+
+const angle=Math.random()*Math.PI*2;
+const dist=150+Math.random()*200;
+
+espurna.animate(
+[
+{transform:"translate(0,0)",opacity:1},
+{transform:`translate(${Math.cos(angle)*dist}px,${Math.sin(angle)*dist}px)`,opacity:0}
+],
+{duration:900}
+);
+
+setTimeout(()=>espurna.remove(),900);
+
+}
+
+for(let i=0;i<6;i++){
+
+const fum=document.createElement("div");
+fum.className="fum";
+fum.style.left=x+(Math.random()*60-30)+"px";
+fum.style.top=y+(Math.random()*60-30)+"px";
+
+document.body.appendChild(fum);
+
+fum.animate(
+[{transform:"scale(0.5)",opacity:0.5},{transform:"scale(2)",opacity:0}],
+{duration:2000}
+);
+
+setTimeout(()=>fum.remove(),2000);
 
 }
 
 }
+
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
