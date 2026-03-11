@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ca">
+<!-- =========================================
+NATURÀLIA TAVERNES DE LA VALLDIGNA
+Proudly powerd by FALLA PRADO 2026
+Sistema de segells amb geolocalització
+========================================= -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📍 Naturàlia de Tavernes de la Valldigna</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; }
+        
+        /* Centrat de la capçalera */
+        .header { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            color: #2c3e50;
+        }
+
+        #map { height: 75vh; width: 100%; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        
+        /* Estils de les finestretes (Popups) */
+        .popup-container { width: 200px; text-align: center; }
+        .popup-img { width: 100%; height: 120px; object-fit: cover; border-radius: 8px; margin-top: 8px; background: #ddd; }
+        .popup-title { font-weight: bold; font-size: 16px; margin: 5px 0; color: #333; }
+        .popup-data { font-size: 13px; color: #666; font-style: italic; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>📍 Naturàlia Tavernes de la Valldigna</h1>
+        <p><strong>Descobreix l'essència de la Valldigna: de la festa de les nostres Falles als racons més purs de la nostra natura.</strong></p>
+    </div>
+    
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Inicialització del mapa
+        var map = L.map('map').setView([39.072, -0.266], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Funció per crear les icones de colors
+        function crearIcona(color) {
+            var iconName = (color === 'marro') ? 'orange' : color; 
+            if(color === 'roig') iconName = 'red';
+            if(color === 'blau') iconName = 'blue';
+            if(color === 'verd') iconName = 'green';
+
+            return new L.Icon({
+                iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${iconName}.png`,
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+        }
+
+        // Funció per afegir punts amb Imatge i Dada Interessant
+        function afegirPunt(lat, lng, color, titol, imgUrl, dada) {
+            var contingut = `
+                <div class="popup-container">
+                    <div class="popup-title">${titol}</div>
+                    <img src="${imgUrl}" class="popup-img" alt="${titol}" onerror="this.src='https://via.placeholder.com/200x120?text=Imatge+pendent'">
+                    <div class="popup-data">${dada}</div>
+                </div>
+            `;
+            L.marker([lat, lng], {icon: crearIcona(color)})
+             .addTo(map)
+             .bindPopup(contingut);
+        }
+
+        // --- 🔴 6 FALLES (ROIG) ---
+       afegirPunt(39.073, -0.263, 'roig', 'Falla Portal', 'https://www.cendradigital.com/wp-content/uploads/2-Falla-Portal-2025-1.jpg', 'La primera comissió creada, situada a l´antiga entrada del poble.');
+        afegirPunt(39.070, -0.269, 'roig', 'Falla Cambro', 'https://www.cendradigital.com/wp-content/uploads/1-Falla-Cambro-2025-2.jpg', 'Pura passió de barri; una comissió familiar que batega amb força al cor dels carrers més tradicionals.');
+        afegirPunt(39.069, -0.266, 'roig', 'Falla la Via', 'https://www.cendradigital.com/wp-content/uploads/6-Falla-La-Via-2025-1.jpg', 'Història viva sobre els antics rails; una falla que planta cara al futur sense oblidar les seues arrels.');
+        afegirPunt(39.070, -0.267, 'roig', 'Falla Passeig', 'https://www.cendradigital.com/wp-content/uploads/5-Falla-Passeig-2025-1.jpg', 'L\'espectacle al centre de la ciutat; on la festa es fa gran i el comboi no s\'atura mai.');
+        afegirPunt(39.076, -0.262, 'roig', 'Falla la Dula', 'https://www.cendradigital.com/wp-content/uploads/4-Falla-La-Dula-2025-1.jpg', 'Sentiment i foc; una comissió incansable que omple de vida i germanor el seu barri.');
+        afegirPunt(39.071, -0.262, 'roig', 'Falla Prado', 'https://www.cendradigital.com/wp-content/uploads/3-Falla-Prado-2025-1.jpg', 'L\'esclat de la creativitat; on l\'esforç de tot un any es transforma en una obra d\'art efímera.');
+
+        // --- 🔵 6 LLOCS D'AIGUA (BLAU) ---
+       afegirPunt(39.087, -0.215, 'blau', 'La Platja', 'https://multimedia.comunitatvalenciana.com/1A51B2BDE34147488216F7416F9E5004/img/0DFD9C8FE67142168BFE32829890F5F5/Vista_Tavernes_valldigna.jpg', 'Quilòmetres d´arena fina i aigües netes guardonades amb la Bandera Blava.');
+        afegirPunt(39.081, -0.241, 'blau', 'L\'Ullal Gran', 'https://caminosnaturales.es/dam/caminos-naturales/caminos-naturales/Sector_III_Este/antic_trenet/imagenes/dsc_0729_648603.JPG', 'Un oasi natural ideal per a berenar i gaudir de la natura.');
+        afegirPunt(39.068, -0.267, 'blau', 'El Riu Vaca', 'https://saforguia.com/upload/images/01_2021/2511_riu_vaca.jpg', 'El fil de vida blau que travessa el nostre terme fins a arribar a la mar.');
+		afegirPunt(39.056, -0.274, 'blau', 'El Clot de la Font', 'https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06573-scaled.jpg', 'Un tresor amagat on l´aigua subterrània brolla amb una claredat sorprenent.');
+        afegirPunt(39.085, -0.270, 'blau', 'Les Fontetes de Cantus', 'https://s0.wklcdn.com/image_236/7101090/148937380/93835506Master.jpg', 'Petit racó de pau on el so de l´aigua convida a la desconnexió total.');
+        afegirPunt(39.102, -0.222, 'blau', 'El Llac de la Goleta', 'https://photo620x400.mnstatic.com/f0a3d10b39b680f24383e84e58ff2dce/la-goleta.jpg', 'Un espai singular prop de la mar on la fauna i la calma conviuen.');
+ 
+        // --- 🟢 6 LLOCS DE NATURA (VERD) ---
+        afegirPunt(39.079, -0.277, 'verd', 'Alt de les Creus', 'https://rutasparatodos.com/wp-content/uploads/2019/09/P1130291-1360x765.jpg', 'El millor balcó per a contemplar tota la Valldigna i l´horitzó marí.');
+        afegirPunt(39.052, -0.238, 'verd', 'Sendeta d\'Esther', 'https://estaticos-cdn.prensaiberica.es/clip/fc02a7b7-9193-4a58-ab36-f4c512e70741_alta-libre-aspect-ratio_default_0.webp', 'Un camí sinuós i bell, perfecte per als amants del senderisme autèntic.');
+        afegirPunt(39.084, -0.248, 'verd', 'Mirador', 'https://femecv.blob.core.windows.net/publico/fotos/9414a8c3caFOTO01PRCV391.jpg', 'Atura´t un moment i respira: la millor panoràmica de les nostres muntanyes.');
+        afegirPunt(39.095, -0.297, 'verd', 'Pic del Massalari', 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxITEhUSEhIVFhUXFxgWGBcVFhcXFxYVFxgYGBcYFRYYHSggGBolHRcYITEiJykrLi4uFyAzODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAMIBAwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAEAAECAwUGBwj/xAA7EAABAgUCAwQIBQQDAQEBAAABAhEAAxIhMQRBBVFhInGBkQYTMkKhscHwFFLR4fEHFSNiM3KCopJD/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQGBf/EACwRAAICAQQBAgUDBQAAAAAAAAABAhESAyExUUETIwQiMmGRQqHwFDNxgbH/2gAMAwEAAhEDEQA/AOmCIemLaYVMekyPMUVUw9MWUw9MLIdFVMO0W0wqYMgorphUxbTD0wsh0VUxIJiymHphZDorCYkBEwmHphWOiITDhMTAhwmJsZAJiQTEwmJBMS2BAJiQTEwmHCYmyiITEgmJhMSCYlsaREJiQTEwmJhMS5FqJAJiYTEwmJBMQ2WokAmJARMJiQTENmiiQAiQTEwmJBMS2UkQAh6YsCYkEwsisQcoipcuDSmIKRDUyZQM8yoUGFEKLzMvTOeph6YuohUR2ZHHRTTCpi6iHogyHRRTD0xdRD0QZBRRTD0xdRD0QsgopCYemLqIeiFkOimmJBMWhEOEQsh0VBMSCYtCIcIich0VBMSCYtCImEQnIpRKQmJhMWhESCIhyLUCoJgLi/GNPpQlWomBAUaUuFEk9yQSw3OA4jUCY8n/AK0Tx6+Qhx2ZalNyqUz+NHwjLU1MY2baWllKmeoaHVS5qBMlLStBwpJBHw3gkJj564F6RajTKPqZhS7OGBFuY3j3r0d4h+I00qewBWkEgYCsKA6PGcNXLk1no48BoTEgmLAmJBMU5EqJAJiQTEwmJBMS5FqBAJhwInTEgIlyLUCsCJNE2h2ici1Eg0MUxa0JoLHgD0Q8W0w8PIj0znqIVEE0QqI7cz5mANRD0QTRDUQZjwB6IeiL6IcIgyDAoohergkIhxLhZlemDCXDiXBXq4cS4nMfpgwlw4RBPq4cS4WZS0wcS4cS4JEuHCIWZS0wcIiQRBARDhES5lqBQERIIi8IhwmJzKWmUhEeG/1gdPEFO3/HLI7ma/iDHvQRHh/9cpQ/GyyMnTpKuv8AkmARlqO0b6UakcHIWHvvy59Y9o/o7xczJC9Mv2pLFPMoU/yPzEeLyCHH8x6R/R5YGtKKWUZKyS9jdNgPLyjmi3kmdElcaPYwmJBMWBMO0dGRkoFYTEgmJtCaFZWJGmHaJNDtCsdEGh2iTQ7QWOiLQmiVMPTBYFbQosphQrAyaIeiJPDvHVZw4EKIaiLHhPBY8CuiHCIm8O8LIMCIREqId4cGFkysBqYemJAw4iXJlKCI0w4TEhDiJcilBEQmJBESh4nJlqCI0w9MPDxORWA1MOEw8B8X4tJ00szZ8xKEDc5J5JAuo9BBZWKPFvT7051n42dK0upmIlIWEJSgJBKkgJWxAcusKa8cRxLi03VTDM1E1c1bBNSmBDDAAslPQDmckmLvSfXom6yfNkyyiWtalIDlw/vZso3U2BU2BGTLBD7dP0gdCSNPhkqTUDMWCkDYqSXbA7OX7o7Hhet02j1MuaiaqtCmVLAKnT7yST0HMjk0efpSXB+B+kbnBJXrJiUqKEAn2lEWduZ7WcC8Z4xu2aW+Ej6N4DxmVq5frZNVIUUmoUkEAHxsRiNJo8/4bx+Xw9CNKnTzFsQpaqkuVKaooSfaawb6576TMqSFMQ4BZQYh9iNjFKSfAnFrkm0O0IQ8FioZoeGeBjxBFZQ5dPtWLIs4qJ52bvgsdBUO0cpxH0/0cpQSFGY4d5YcAFwO+4MZfF/6mShLP4dBUvYrACQNywLk9P4iXNLlhR2+t1iJSa5iglIa56xj6v0y0KE1evSrLBFySA7Dv5m3WPGuKekk/VH/ADTyoO5SFFKXZhSkMBsPExz4mJrANagSwoLAX2OVN9Yh6vQUeqT/AOp+oKiZekQEbBc0VN/tSkh+4mFHnFKU2ta16n+FoUZf1M+v2Hgj1X+7q5mH/u6uZjMOnV1vEvwi+v8AEer9n7Hnfd6Zof3dXMwv7wrnGWdMvkfOH/BTPy/EQ/Z7Qe70zT/vCvzQ/wDd1fmjI/Cq6eYiPqlfbQez2g93p/ubX93V+aHHF1fmjFEhWLeJEN6hXMeYhex2h1q9P8M3RxZX5okOLn80YPqTzhGURvC9jtDrW6f4Zv8A94P5occYV+aMAI/2EWJlb1CE/Q7Q/e6f4ZvDiyucTHFlfmjBpbJ+f6Q8tQPvD76RLWh2h+90zoBxZX5vjExxZXMxgpKfzeYMN65LsFOegiK0fsVet0zo08VPOPIf6qTVHWiYqYFpKBSgqJMsMyhT7rkVdXviO/E5P5vvlHlvpqNONQTKKlPV6wl7THwmprZ58o5fiVpqHynX8N6mfzHPAkqs5JtgZ6QwBBxfF/0iUpn374ukhN6rPzePnn0BpSjsSS+4wenP9oJ0+o7QDO5AIa9zdg7ExTOloZJSxG4ti7xbJl+rmCoPSrDl7dfKG0xJnUca1AC5U/tTShYAE16WSNwkBy6fgXEev8D9IJk+SmauWZRV7qsnqLCx2ePIeEcWlLWy5CFOsqAFTE3LFJqu5Fw3tDlHQ+l3pP6urSS0KJSGUtbhgGak+8W97uOcLScYOp9C1lKSTh2dFqv6kICxLQATUyio2CXYlhd++BuP/wBRv8bab2yS6iLAJIZiC1+u20eV0pYKKiFE45qd3fcfCJ6vWy0JJBBUX5scbjlGUviPCQ1CuWzsNN6c6lBmLWQZiyKTsk7skWIYc+6Ob4lxqaqYJs6ctR2c2pwAzsA33zxTqgVBYBcA7tgWOA9n8oC13EQoU2PZABAuDyeMnnN0+C6RqaziQKWSUpG7XtuGgaRrmN1MKSHYX7t3x8cPGRKlOCQLcgTmJJTUoVlumHbbpbpF4KgT8hupmM/qw6Qbk5OWbowcnrFE+cpLIKWLd9jkhsWtF60AJtNGAGIF2AF228P3omzlEU/l6lgb7YGeW8C3EXTPSCYCySGDM7kgNhyYUALnIBtKS3UufElzCg9OPQj35OnVvSRyLt/8sYr1GlKn9gf/AKPweHGrR+dPmPpEFcYlD3h8fnAtXU8HQ4Q8g0vQTXepJHiO7YxcrQqPIeJPzEUr4/K2D+Kf1gWd6SpGJfx/YxpnrS8EY6K8h44cpmcZyQ5PmIhN4byURu/3+sAD0gUR/wAR6Z/SA5vGdQXZIHcFP8oa9XslvRrg3dPogn3i5yd4mdIdpih3AfOOaRxCexKlKbOFeUY/E/SA+6sqPeW8jFxhqSfJD1NNLg7mbpkt25h7yQP0tApVJFjNHL2h+secL4nPWXCj/wCeXVo3eHz10f5GIOOfmIuUJQXzSJWpGXETql6iUlh6xZ5AF+lmEVo10kE3mAjv+UYcrXSEWWlT7WSr9PrAupWCCqWG6HJ5t8ISa8ticn4SOgm8QBelCmO5e472+sUjUqbtKSEn/Zj+sYGm1ZV2VKbkYlWpNn8H+IvFKdbENN7nQydWQLMo7kfXnFitYDdSQe9z9IwPxDEAunkf1g6TqbCoAi9+b8yGfxh+quQx8B/9xb2UpbG/ye0eea+ckqW594u+bk7d4+MdlO17WCEuxZQALct48/1KnUVK3JJPNRLl/GFLVUtkOMGuStDs9Jb5425Q0tZ7st3xJc0m0KdJKC+xbxfLRLj0XfZKkDoeh/eLUF8lWwvc2sBfkPpEUSHH7Z6RGUm/UfEQq3Cza4VrkyJgUtAXLLggFiQXHtC6SCHjrPSbjErWSkiWCChSQmsJYCntJBYk3az+6/KOT4TIkzfWGZXZIICWb8rqLfmKWtuY0uJyJemmKlE9kB0qSRUwcMoEXLg3wW2eObXaXg20+NzJmiYXARuLmwcYYmzxk6+TOSploPIDsrDnkzh8xqa6ekkpltTS6XN+SgC2cW+xDTaixHq0koApA253G3w8oyjKlwDSMYTQpRt55DYdvpD6nT1ElKQlgzDcjJY4/aDuOerrC8VMFIZlBQyoXwYE0hQoAqf3uykEkBILqJLdY1Uk1ZIRw7QqUDR7RwSQEuznmTtgbwJq+HTkzAhSTUe04BIIPItBMnU0oCrBmJH5S5Y9/n1g1HFv8bhRUSz1G4IOSN8C3QRLlJPYAGVwBa5QmJUHuaQQRQ1urvawOcWuSjgxCQkJvS5KnYnlfBxbHQPFE/iwIKUgE9AzJLM7ff1O4drVBJqS7EdkuGAB7ROwu1xEylqVYjH/ALY9zMQkna5bxAhRtarRSpiis/iQS1gQwYAWt0hoa1n9xHYJ09X/APUP/s6fvziUqRLBZa0nq5APcpi/hGRMWtyQGG45Zz0aBpst3ckgjuIJY22y1o3U2waXR0i5MstStCRu5cls5TaK5qZKGZYJ3UGJHcMN8YwJM4p+FmVg7sTa9oIN9mPfuOfnCcpINujRmaiVzmP0YRRM1yb0Xa3bJDeIz93gGYCBcd5flmIqmgZKefzJ36/GBSYrIazTzljtLcck4/fxgQ8Op9oHa+3KwEbWlmJUxYkM/Z7scrxncQdZekgC4SAQQ/XJ+8RcdeXHBL0/IpUmUkOXUO/6C3g0FzQunsEEcgA/lGWuQshLbHBL1Zzy3g/QhQZJFPSxDbEF4jUklvdjUH0Q0swzAQRjlY/oNswWqWUEpJuNi3LbY5+MCHVJrL287nGN+T9YvSsKIBJcWYvgjPfYRi9fd7FKAPL0awanBv0sft4umyyoPg9LecEaoBQFJcEux58jgiw+ECqW6aUslQD0m7MfzDua0QvipN7j9NBbMKVFxsLOTbEKcGAPf5vg8jiBBqXLbhr91799ovmTXCqmFmzhsY3d4n5pcstRKUakdls5x3Y/TrHNCagVVAEE2DC7n5RpcSUmWk2IJIu+93PfkxhTueQevxjq0FSsifRZNUKsN0h1rdk3PSw+PlA6VtnwMEJVhj3X53YRvuRsWTSUpIYjn9mJadRWQCHNhsB3XsO+KJqSc+cW6NBKmK6aXPaAOByz08YHYI6X0Q9WJtMxw5S92FlgqSetvBoM/qtrdOZchSABqFEKVSyf8dJNwCx7RF2d37oI9GeGq1lSq0SyJ1QCKQ9riWCak1EAhw3xin019E/xBfSoJnyOzMlpNSpso9oLlvlYKlONwbezHK5JySZ0qNRdHm41CiFHNs8riFK1Ckq7JIYbZ2+saszg9afWygKD7o2qDKTfYFJz+aL+BykEFBlpVMSsFyWZi4Gb8wW58obnGmzOic3SompSFLJmAMks77kHcgAHzMT4ZwtClOolzXLKQXvcEhrgM1oO1XDZadRLX2nKHUMpJCAh3Iszg+IizTT6FECWCpQqsbg5c8v2jmeo3H5RnOazgc2pQQmqlgWZiScJxhLP+8S0PCwCfXVBQZgkOHb3huRuBG7xLVKdj2QQTcJDsA4ublm/WM/V6gMEqAKsvh0m7FizDl1EXHUnKKJaCJ/CA3+Fis5dhSBu9+vyjMGnXKU6yeWWI3LHw+MDq1q0TTcBrWx373v8Y3JWjlTEJMxSzUB7wsvclQfyzgbRVyj9W6FyZx1Ew3E1Td4+t4UayeGyDcAeBceHZPzhRHqQ6GaRlXN7G2zeW0DApILKDY8oJVVb2Rypcl9rQPL1MmSXMlMyYbuseyf+vO8aR3JorQyv+MksMC48B3wUqUUh1AJDZJAF+mfKKJ3Ep6mcUIUbAks5x2ckdwiiaiYpkgglyxx2dwAb/wAQ5OhpI0zIStDqwrZTps2T5RBOjpIcsm1y9w1mKRd+sQ0b1ELdxjcm73B2Dd0G6iaxDppfbPZBYMeVwLdIxzkvJokgzU6qUmX71YHjbYjfzjPlLmTZSlUUhRIS7n2dyx5H7zAWvlAJBCiSByqFYAsg4Pxh1alVPti9gSC9RZwfHfobQnwW5tlypFuTlk81BvZDgOr6naB1awuGtdne4JpBBD3U5HT6mo1SQSB2nDlk3FTU8yNhtmI6xYNCRSFKBJTSCXbLDBwX6dYzt3uhNtmGrWLmEqLMSQ4u9O4bIxzJ26vpFzDZiQkuDzTux5NGrP0UlYU2CoAEEh2NyTvhu4vzgiRISkjJd7kYGQxvtuWd9o1tVsLAypnFL0DFnVi7XYfeYKlawAhwFBgTkbuxcM93ffaA9VLSsuC4B6sMX7m5253i5WmStBUixCW7N8pYfIHPSE1GtxMIk6ZAUSCbhwQo2cuBY22wIhxMhIK1MEkAEi7FvmS9+nnl66pCiGAAtchyT+UP1HOxF4B1+u7JlAuGueqS/n984qMG5IMqI8T4mJxSkJLJS1RN1Ft+Q5d5gL1Qtzbe0R0438ojPJbN9ukd8YpLYybbe4y5uz/u2Yvl1D2Se79IaYmpAU3ltziCCU4wW+wdoq6JqzY4UUTCgLKgLgmxUkbG9mGe4GG0erVLSZnZKgpCgSkF7spN8gglxGYmcX2+flaLimupsJDkOLBwLC25ETJ5FR2CNDxCakn1aimqxCSb5bfPKOl4HqdR62ZrDMAKSHcZKgo3SkMEmlT2G+5EclKmByTnPlvHdcFm+t4asG5Qt7OSE37LksBSVKpA2UbvGOrUYNmmm22B6wV1KCQkqdagLJrcLURTzJN2jl50xtSCliVTKTZge0xJG4d7dI3uJalSQqUlqvZ5m4a/PPwgSdIl0ui6rqU+1yQwb7a28cOnLHnyOW5PTakkhjcVG+SbdkjraNWXJO9L3emz7Z7rfZjmJE5QXtU6ntd3JfzeNWVqlbEE2DAlgMi/N4NSD8AmFcW4ehdJIcAqqd3bZIKVA5uzbdIE4rIlhaWdNKbLAJ900h8j2W6vc4g0cSSxqIydnfZjzLjH+0ETp8tSTcgWUC93BN2O9vvfFSnCrHSZyGrRMWAJoCVJLKLCoAADtNdVyGznyv4bKRSEoVWHYkppa4fe5ZTP/MT10yszcGuWVKZLOpNgSCbHGIt0EtMuUnssTdzkFx2mewt8o65SeBBNMhTC6hYc8tffm8KCpmpQ/aWp+8n4gQo585fxBZtz9KZjCr3bIQGBu1yLliWu+esVIQhKrAOl7puCpy7kBwXGB8Iv1eo7Ra6kMkOWKUim9WWILgOHaKk6A1VCZ2VAMEpBAU7gAsBvvbaLc78luvBVqCgsVEAgkBmJa9ikF265vETM04IWWBelmbcMDyNyX6iKdQqUJyQ1RSC5WqlnswFLEsSX2YYJYQ1M6WlK0UpW16VFjUk2WQaicnGGyN3FN0mxWVSuKhbuSk3Dhi7877Y2iS1pUFAKDJFwbA2JLWpB233OYCk6MTyVmaOyxsD7SnJSEnNt2bo9o0zomTQFCpwSCkMVYUXxsNyQxvzp1EStlVIClMCwANKS6gkhIZmJBuD1+EUlIaupITYgPgG9Ku9ud87mDpUgTUVglBJoCkYVSdrnDZ5/HI47qksACWNSgrLLrUksBZiEoVuRV0jRLLYt7Fn92CSW5ZPI2Sz2bBfNhygb8cVLFK2GSFP712qNylm2+EYupmPTbAAydrMRsYeUpA3yCwvnDPsC5/aNFpJGWTs63Sa6XMQxFwLm9muS5GMd9uRiX44tY8yB152939IwdJqGklBDKJChioJaxdnLd+4i7TagKlFMsdpNiq47NThYbfZj0zeMnp1wW2a41wpUVO3kAQNxsPZFx7z7RQvVEpFJAtZilq35CxbO2d7RGbo0iUpTFkgLNvaJuq9msevUXjNHFezSKqrnskDucb4L/wAROCfCJJcVkesHr0KuhPaD7g3IL8zy2jDppsbl7u7dw6bwWNepINKiAT/6cctr7+MZ5WSSTnzL98deknHkllsqb2qdsi2/LpFiC4IbP34wMLlybNnvxF2nJDsbbPGxI0iaUHvyIJXrbukbdc92IHUCb/fhElIYPCoC6VIJvz+7RYiSXs5PLMVo1TAMCfhGpwzVGtLWqBTcsRX2bE2e8Dqhq7NPQ+j0miqbqECpYQkpIPJ1KBYhLlum7R1Ho/NRppF3RdYXUtILpIYFvasroRfaMLimsn+qUkz6iJ9SVeyVS/ZSqlnU9nJfGTFs3XAS10qllC1BUxKkpmVqLr7LC5NYDZDbkRzSbezN1SZlcZBMwlIAq7QIuWUxBcEg2L+MZmnndlSASFMMblx05P8ACC1a4AJqFK7YHZYBrEscWdmLWwIyNRqwpXZYd+D47XjNQ8UKVck1agVKUoAhViTgKBqceFs7mNHSz6mSTYXJuLOzH59W8Yy0acKUsE0s9Lu7nru1xjfyno1mWtqXJ7DsT35yQz84qUVRHAZOlkhYZ6SpsZCWs9/dzm4hmUqWlKbdsvewxYEX6Mz5ha/UJJWmtndgWN+YChffveDK0pT2RSAojfkDf73jKTaihlElQQlyO0RTcja93w1REViqZMUsiwCSdgPN9ngfXapwOYJuO8fSKJWoKlBIZieVjd79IIx/UybJhZN7HqSHPxh4JCk7MeqSlurXhRd/YDf4hqFKA9UClZvcAA3JYsAASCQG69Yt4ct0AqIBuOy7mYlRuoglny4aw2BgLSIkiUmYVLCgQCSWTbtBTG5JJ3yHxGTO4gygEhkEHq5UKQScPvbYxjGF2kWy/wBINWFFK0ApJSCpwliXAsS9NJGxJ8oygkVElZ2CrqdTu5Ja3xO8D6gtYG299/CGkqUzOA5Od2Be48uUdcI0jPybuh1YQgoUkgOG95N0gElz2SSB5hrQWdeXFJCUPYqrUoHDNY0gFPeSQ5jn9OlBU00qSk5pKSUm7GkkOLNkMMObQpOvYLQomk0gUsAaSLk03AAeJlpRbsZ1/BtRIJSKCZZItiqwSxdiSm2cvvsFxLhrdpIqlpIFP+qmf2nyWPh1thySqasMQagCADlsgOQyiU9Lc40OLadRSr1ijYpNqSCsWsSXHJ3e4ETi1Lk0/SYc2kGpixewyLlhfoHv/Ii3/SLJ2SxfN3hpiHUCCA9ydnJOWwY3MiellFZCRkkDuuw+PzgtlSpiTcqBuCHvhT8wb+d4CQGIIVf44v0hloVm/wARl+Y6ZgHQfqeLTFCnAsBSDnAuSdkgW/L3wFM1ANgGsx7+rvd3OAxxgQMteGcGz33f+IrKt+cNRSFZcuY4/n6xBK/OIPaGQbiKQgqWnFr/ALxaEPbL+EMlmHx6d8MVM19/Lui6FZcuXbv+ffFBSAWhTdSWwL784GCrwm0CDZYJLCCpcgdksu+4t5HY/pAWjqKgwJYuwN7X3jfmamSAQAtCHALC4LBzyyCPE9DESml4GkT4/NlUSZglrZVaCFTKrpSkpNQAGVFxmx74hK0zyyUI7bAkhu0m2HTUSGxe46vAUwyihKQLFNSiouoLqIcAGwZLttVGv6OaoKJlkBJYEAXqAcAAHv8AFzzjDVbS2LTMrjOjKCCi4GwD02uVEO4LHyjICrXcfOOzncPaYUqM0VN20gFmJrTi2XfpiMedwV5ikLrKgblIFxl0pPUm3d1ZaeoqBpgenuHLOKjUaiwYDHK0XSZjzAlVyCHd2ZiXHcQC/wAohK4cpdQTMxioEPkXAcghhYA/WDeEadSFlCgKgEFJpBQSpHvEHGMA3cnq5tUwMjikw+uLEZBByw5YuIKmLckByAxe2QOvfiBOKyFImkqS1XaYM19rRVLmNcZEOriiWXaiaGSB47F3/RoeQi3+3yDZzmKJaSb5YB+l8fKC0IKTWXBGGLYttcQPYQJqZQCiKhnmP1hRXO1DqJYXL+9+sKNEnQGqeIJFRKXJ9k8sAjOGci3KAZiveUok86h5AEXt5fCK5iLO1hYXuG6WfOekRJsA2WZm8x1tAlRRMKsBc5yd+nLxeF66kEDu3f8AaJpUApJD7YvfpYm5iqdOd27i/wB5gAuQUkYax2sdvC28VLDd3fnFoqqiJihBOknlCgtOQQQGsW5+DwZxjjBnKJACUljSHZ2bfa6vPyykzSLPDA5hYq7He1FqSGPwjVRowqSkoQoO5Ky1PZUol/8AyPEjujEf4RbLnbvcWB5QNCRpmahJFVNgFG7FYFgE2LFreJNmiOo4hUKcAElmBYnkC9+obJ6QNJoNmc9d2wOkU6mSAHH7H9DFKG1g5+AZdoSTFn4YsVPgPFKTA0IkqIiJM8MC0ABclZ+94tSHvn76RXpSDmCkTLEi293YjlGiollKdETv3fzAs2UxbMacuUtYKkBwEqJIwCgOpjzY4zGVN5/KJk48IavySlTSPv7tBR1lcspUpQW+LUkdmyrPs78zE+EaQTaxVSpICkqYnmGsNyRbeOknCWqlC5aWcgBiQqkspaUoAP8A888sYw1J14LSOe0mnJSFEJYdbqd6TfskW8ncRv8ABZaQVFRIcAAs5CgoF8WSWIDbjMZGo0y2pKaG7ICizUh2cu5BtaLA8kB3IY4NwbOA4GCkfLvjUWSoE6OvCKQSuYO0dmDEku1TMQA97Br84s1E2UghRUBMLiok1UDDOS4c3sHAPURyiNfNLkK5uoMMghiHfIBa/UMbi/iCwClilJChSemA24cP+0Yei35KyOpSEKaalaXIZkhrK3DEFRs3heBJywpPZN1OQVrenDmol8MWu9OTA3DdTKBpUpRQO0QC4IAIU5KbbY68wYIGuTLJQWVLHsufZBu/ye+xDmJUZIV2CTdYCKJkkLUD74CmY7pPVRs0YHE6BNNCKAQDS5IcgE0uHCeWfpHTytVKUs+rQ6S9VZICiSB2S7HBs/Lxp4nwX1gExEmlfvALpBJJKixSaty9QzyDDSE1B77WScxLWUu2DhwN4eZqzglwR5X/AGgdc4mw9kFx5/vFK1vHVVgE+qJhRSJxhQUxGppaEjthRZxawD4dTFi94HE0BID3D2927nDc2h9NNQQUzASlgeywUFB2PxIvz8Q8vVUkFIAYg3D452NsvaBrcqyouWZJvywQOQbpEJiG+940JmulrUpZBSoqKmSE0hJGC+CCB7p8MnOmzqsBvvfnDQMpJiQFoYwhDJETDBF8xIiFLVDAZaGIEMInqj7JHL6xTVAxlqJwFjElapwzQOYSecOwoLmTlUMzc3Nz+kCHpCqhQN2JIkDCgnh0pKlELxSpu0B2m7OepEU+rNwL91/sRIy3SpdQA/mOr4HwEBaV6koDMQhRSQcPW5Zr7O4BjldKkVCv2dwSR4OASOWI6Xh1C0MZdSEJdNS0haVqcFNQIdBNJZi0TqTcUONG5xeXUsqQlSwqn1alS/8AGuklyhIZ00XO5F7t2uY4vTN1YQpCUUkApFkrG4BSmwAs+Sx3LR0+hkrkywgzEVULdQJqSHT7ChZNlEs4u/Uxz+q4aXmicHU4UhaVoe9qUl35BjhtnjkjKN2v8IqT2BtN6qTMBlglZJKe0FBA/Kt7E2y2+I3k8RKaAUsDbmCdybkbkv55eMBUubUEKdK6BSkgk0i6UjoTtsTFokgJsolT0qD0sSwVcFje3Jh4RUop1ZFmnrdVLUpNTOAGUodkkvcsQDkXAONwI57iCiHSC4cuc45E3ETmukjJcADe1nbq9rfWFLQgkhr3ukhqRexOcjOwzGsIKO4wSTMV7L2YP3C9n3a3lBYQ9ilksq5KcpsGdvr84oUliSAHF/k45b99oKkXsdiDsygc1EjruM9IpgRqZ2pQUvuaVAFmx7T8tiOsRkhBCnXuAEFNyKVdp325d12gyTMdKgEpClKKh2SrszAUUhTeyCym3LQPpdMkKZbAi91AJPstc7kbPvsHiUxBWq04SpJQXGbgntBrKuXLXbk9o2eETpyaTMU1RCgASFAqAZVOWZnLEpbZ7BVFSC6XuEoVewL0vU97A7PyiviOqUgoBUxIYvMqQBlLEjsZdsCkxjNNrEpqiz0g4RKMpawkyym4pQKT2XYkJDCygO4HcPxDR3+lkzCFS5iAEdr8rX7QcZdQYh8iMhforMRLZQQpSqqChdR7IxSL3JGb9MxelNRuMmJnNPCiMxJBINiCxHUQo6aJDZI+sVzzcd0KFCXIFb28vrEU7woUMZKEmFCgAdWPGHk5hQoYE9V7I++cDKhQobAc/WIGFChAOmEIUKAArRKIWCCxBsRtGui2oJFrqx1N4UKIlwHgzJ3tH/sfpHV+j6QNOogXdQfdgHF4UKM/if7f4BGgntaYVXalnu1hh4zVpBUAQ7pm/BS28mHlDQo4NH6v9sGFcWN0jYJDdKkznbvYP3RyiQ7E5JudzaFCju0/pBmrolFUibUXpWCHuxKkgkPgkRirnrzUpwzFy47jtChRrHlgWqPZq3c33wnfxPnF6S0txYui4/7t8oUKBlrgJmf8oG3rJYbZnTbusLdIF1Ewsi5uq984F/ADyhQoSBm1pPalJ2dJbZ2G0EcTlJpT2RlJwMkMT3tChRzP60XPn8f8BvR+coyZrqJaakBybAWAHRo2ZSQZwBAPZBvzFTHvhQoWqvmZiZ0zRyiSTLQSbklIJJ6loUKFERbok//Z', 'Un repte per als cims amb una recompensa visual que no oblidaràs.');
+        afegirPunt(39.080, -0.211, 'verd', 'Ecosistema Dunar', 'https://ecosistemalitoral.dival.es/wp-content/uploads/playarapdells_imagen_olivaturisme.jpg', 'Un espai protegit d´alt valor ecològic que guarda la biodiversitat de la costa.');
+        afegirPunt(39.059, -0.280, 'verd', 'Via Verda', 'https://s3.ppllstatics.com/lasprovincias/www/multimedia/202002/05/media/cortadas/146946459--1248x574.jpg', 'L´antic camí del tren reconvertit en un passeig saludable entre tarongers.');
+
+        // --- 🟤 6 EDIFICIS (MARRÓ) ---
+        afegirPunt(39.0726, -0.2671, 'marro', 'Església Sant Pere', 'https://www.visitatavernes.es/wp-content/uploads/2021/05/Panorama-St-Pere-100x150-2.jpg', 'Una joia de l´arquitectura religiosa amb segles d´història als seus murs.');
+        afegirPunt(39.0717, -0.2676, 'marro', 'Ajuntament', 'https://www.tavernes.es/sites/www.tavernes.es/files/ficheros/Edificis/04-11-2010_ajuntament-web.jpg', 'Casa de la vila i símbol de la gestió i la vida civil dels vallers.');
+        afegirPunt(39.0862, -0.2178, 'marro', 'Torre de Guaita', 'https://www.tavernes.es/sites/www.tavernes.es/files/imagenes/turisme/vista-frontal-torre.jpg', 'Històrica sentinella que protegia les nostres costes dels atacs pirates.');
+        afegirPunt(39.0750, -0.2690, 'marro', 'El Calvari', 'https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC06126-1-scaled.jpg', 'Un camí de pau i silenci que ens regala unes vistes precioses del nucli urbà.');
+        afegirPunt(39.0822, -0.2555, 'marro', 'Ermita de Sant Llorenç', 'https://multimedia.comunitatvalenciana.com/7AAE7E0925C545DC8CD6D96F4F353142/img/DBF54F3946204601B5121B1D29916EE0/st_lloren.jpg', 'Petit temple carregat d\'espiritualitat en un entorn privilegiat.');
+		afegirPunt(39.0720, -0.2658, 'marro', 'Mercat Municipal', 'https://www.visitatavernes.es/wp-content/uploads/2021/05/DSC07877-scaled.jpg', 'El cor del comerç local: productes frescos, proximitat i el tracte de tota la vida.');
+
+    </script>
+</body>
+</html>
